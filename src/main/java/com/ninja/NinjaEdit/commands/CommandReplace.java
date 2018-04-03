@@ -14,7 +14,6 @@ import com.ninja.NinjaEdit.blocks.DataBlock;
 
 public class CommandReplace implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandReplace(NinjaEdit inst)
@@ -28,6 +27,7 @@ public class CommandReplace implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.replace"))
 			{
 				String name = p.getName();
@@ -36,27 +36,25 @@ public class CommandReplace implements CommandExecutor
 				int from = 0;
 				DataBlock to = null;
 				editHistory.enableAsync();
+				
 				try
 				{
-
 					if(args.length == 1)
 					{
 						from = -1;
 						to = inst.getBlock(args[0]);
-
 					}
 					else if(args.length >= 1)
 					{
-
 						from = inst.getBlock(args[0]).getTypeId();
 						to = inst.getBlock(args[1]);
-
 					}
 				}
 				catch(UnknownItemException e)
 				{
 					p.sendMessage(ChatColor.RED + "You must have a valid id!");
 				}
+				
 				if(inst.getSession(name).pos1 != null && inst.getSession(name).pos1 != null)
 				{
 					int count = editHistory.replaceBlocks(p.getWorld(), session.getRegion(), from, to);
@@ -80,5 +78,4 @@ public class CommandReplace implements CommandExecutor
 		}
 		return false;
 	}
-
 }

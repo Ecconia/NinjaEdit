@@ -6,7 +6,6 @@ import com.ninja.NinjaEdit.maths.Vec3;
 
 public class CuboidRegion implements Region
 {
-
 	private Vec3 pos1;
 	private Vec3 pos2;
 
@@ -234,5 +233,4 @@ public class CuboidRegion implements Region
 		pos1 = pos1.clampY(0, 127);
 		pos2 = pos2.clampY(0, 127);
 	}
-
 }

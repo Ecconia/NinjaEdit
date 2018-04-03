@@ -16,7 +16,6 @@ import net.md_5.bungee.api.ChatColor;
 
 public class CommandSet implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandSet(NinjaEdit inst)
@@ -30,6 +29,7 @@ public class CommandSet implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.set"))
 			{
 				if(args.length != 0)
@@ -39,6 +39,7 @@ public class CommandSet implements CommandExecutor
 					EditHistory editHistory = new EditHistory();
 					Pattern pattern;
 					editHistory.enableAsync();
+					
 					try
 					{
 						pattern = inst.getBlockPattern(args[0]);
@@ -49,10 +50,11 @@ public class CommandSet implements CommandExecutor
 						return true;
 
 					}
+					
 					if(inst.getSession(name).pos1 != null && inst.getSession(name).pos1 != null)
 					{
-
 						int count;
+						
 						if(pattern instanceof SingleBlockPattern)
 						{
 							count = editHistory.setBlocks(p.getWorld(), session.getRegion(), (SingleBlockPattern) pattern);
@@ -61,6 +63,7 @@ public class CommandSet implements CommandExecutor
 						{
 							count = editHistory.setBlocks(p.getWorld(), session.getRegion(), pattern);
 						}
+						
 						session.remember(editHistory);
 						p.sendMessage(ChatColor.LIGHT_PURPLE + "Operation completed (" + count + " blocks affected).");
 						editHistory.finshAsyncBlocks(p.getWorld());
@@ -80,6 +83,5 @@ public class CommandSet implements CommandExecutor
 			}
 		}
 		return false;
-
 	}
 }

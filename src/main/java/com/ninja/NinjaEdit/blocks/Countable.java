@@ -3,6 +3,7 @@ package com.ninja.NinjaEdit.blocks;
 public class Countable<T>
 {
 	private T id;
+	
 	/**
 	 * Amount.
 	 */

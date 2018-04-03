@@ -11,7 +11,6 @@ import com.ninja.NinjaEdit.data.DataException;
 
 public class NoteBlock extends DataBlock implements TileEntityBlock
 {
-
 	private byte note;
 
 	public NoteBlock(int data)
@@ -58,12 +57,14 @@ public class NoteBlock extends DataBlock implements TileEntityBlock
 		Tag t;
 
 		t = values.get("id");
+		
 		if(!(t instanceof StringTag) || !((StringTag) t).getValue().equals("Music"))
 		{
 			throw new DataException("'Music' tile entity expected");
 		}
 
 		t = values.get("note");
+		
 		if(t instanceof ByteTag)
 		{
 			note = ((ByteTag) t).getValue();

@@ -5,6 +5,5 @@ import com.ninja.NinjaEdit.maths.Vec3;
 
 public interface Pattern
 {
-
 	public DataBlock next(Vec3 pos);
 }

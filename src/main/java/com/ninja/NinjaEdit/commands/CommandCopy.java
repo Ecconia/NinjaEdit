@@ -15,7 +15,6 @@ import com.ninja.NinjaEdit.regions.Region;
 
 public class CommandCopy implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandCopy(NinjaEdit inst)
@@ -29,6 +28,7 @@ public class CommandCopy implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.copy"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
@@ -52,5 +52,4 @@ public class CommandCopy implements CommandExecutor
 		}
 		return false;
 	}
-
 }

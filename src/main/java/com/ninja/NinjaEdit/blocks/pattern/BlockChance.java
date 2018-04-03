@@ -4,7 +4,6 @@ import com.ninja.NinjaEdit.blocks.DataBlock;
 
 public class BlockChance
 {
-
 	private DataBlock block;
 	private double chance;
 

@@ -20,7 +20,6 @@ import com.ninja.NinjaEdit.data.InvalidFormatException;
 
 public class ChestBlock extends DataBlock implements TileEntityBlock, ContainerBlock
 {
-
 	//the items
 	private ItemStack[] items;
 
@@ -61,9 +60,11 @@ public class ChestBlock extends DataBlock implements TileEntityBlock, ContainerB
 	public Map<String, Tag> toTileEntityNBT() throws DataException
 	{
 		List<Tag> itemsList = new ArrayList<Tag>();
+		
 		for(int i = 0; i < items.length; i++)
 		{
 			ItemStack item = items[i];
+			
 			if(item != null)
 			{
 				Map<String, Tag> data = new HashMap<String, Tag>();
@@ -75,6 +76,7 @@ public class ChestBlock extends DataBlock implements TileEntityBlock, ContainerB
 				itemsList.add(itemTag);
 			}
 		}
+		
 		Map<String, Tag> values = new HashMap<String, Tag>();
 		values.put("Items", new ListTag("Items", CompoundTag.class, itemsList));
 		return values;
@@ -91,15 +93,16 @@ public class ChestBlock extends DataBlock implements TileEntityBlock, ContainerB
 		ItemStack[] newItems = new ItemStack[27];
 
 		Tag t = values.get("id");
+		
 		if(!(t instanceof StringTag) || !((StringTag) t).getValue().equals("Chest"))
 		{
 			throw new DataException("'Chest' tile entity expected");
 		}
 
 		ListTag items;
+		
 		try
 		{
-
 			items = (ListTag) Chunk.getChildTag(values, "Items", ListTag.class);
 
 			for(Tag tag : items.getValue())

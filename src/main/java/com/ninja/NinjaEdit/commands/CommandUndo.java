@@ -11,7 +11,6 @@ import com.ninja.NinjaEdit.PlayerSession;
 
 public class CommandUndo implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandUndo(NinjaEdit inst)
@@ -25,9 +24,11 @@ public class CommandUndo implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.undo"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
+				
 				if(session.undo(p.getWorld()))
 				{
 					p.sendMessage(ChatColor.LIGHT_PURPLE + "Undo successful.");

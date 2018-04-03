@@ -15,8 +15,7 @@ public class SignBlock extends DataBlock implements TileEntityBlock
 	public SignBlock(int type, int data)
 	{
 		super(type, data);
-		this.text = new String[]
-			{ "", "", "", "" };
+		this.text = new String[] { "", "", "", "" };
 	}
 
 	public SignBlock(int type, int data, String[] text)
@@ -42,11 +41,9 @@ public class SignBlock extends DataBlock implements TileEntityBlock
 	}
 
 	//store nbt data in the tile entity
-
 	@Override
 	public Map<String, Tag> toTileEntityNBT()
 	{
-
 		Map<String, Tag> values = new HashMap<String, Tag>();
 		values.put("Line1", new StringTag("Line1", text[0]));
 		values.put("Line2", new StringTag("Line2", text[1]));
@@ -56,11 +53,9 @@ public class SignBlock extends DataBlock implements TileEntityBlock
 	}
 
 	//get nbt from the title entity data
-
 	@Override
 	public void fromTileEntityNBT(Map<String, Tag> values) throws DataException
 	{
-
 		if(values == null)
 		{
 			return;
@@ -68,34 +63,38 @@ public class SignBlock extends DataBlock implements TileEntityBlock
 
 		Tag t;
 
-		text = new String[]
-			{ "", "", "", "" };
+		text = new String[] { "", "", "", "" };
 
 		t = values.get("id");
+		
 		if(!(t instanceof StringTag) || !((StringTag) t).getValue().equals("Sign"))
 		{
 			throw new DataException("'Sign' tile entity expected");
 		}
 
 		t = values.get("Line1");
+		
 		if(t instanceof StringTag)
 		{
 			text[0] = ((StringTag) t).getValue();
 		}
 
 		t = values.get("Line2");
+		
 		if(t instanceof StringTag)
 		{
 			text[1] = ((StringTag) t).getValue();
 		}
 
 		t = values.get("Line3");
+		
 		if(t instanceof StringTag)
 		{
 			text[2] = ((StringTag) t).getValue();
 		}
 
 		t = values.get("Line4");
+		
 		if(t instanceof StringTag)
 		{
 			text[3] = ((StringTag) t).getValue();

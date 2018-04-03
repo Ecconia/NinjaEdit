@@ -5,7 +5,6 @@ import com.ninja.NinjaEdit.maths.Vec3;
 
 public class SingleBlockPattern implements Pattern
 {
-
 	private DataBlock block;
 
 	public SingleBlockPattern(DataBlock block)

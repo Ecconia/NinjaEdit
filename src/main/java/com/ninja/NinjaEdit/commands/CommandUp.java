@@ -11,7 +11,6 @@ import com.ninja.NinjaEdit.NinjaEdit;
 
 public class CommandUp implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandUp(NinjaEdit inst)
@@ -26,10 +25,12 @@ public class CommandUp implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.up"))
 			{
 				Location loc = p.getLocation();
 				int value = -1;
+				
 				if(args.length != 0)
 				{
 					try
@@ -47,6 +48,7 @@ public class CommandUp implements CommandExecutor
 				{
 					loc.setY(255);
 				}
+				
 				loc.add(0, value, 0);
 				//set glass
 				loc.getWorld().getBlockAt(loc).setTypeId(20);
@@ -64,5 +66,4 @@ public class CommandUp implements CommandExecutor
 
 		return false;
 	}
-
 }

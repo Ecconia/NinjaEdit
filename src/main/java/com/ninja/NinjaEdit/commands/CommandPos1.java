@@ -11,7 +11,6 @@ import com.ninja.NinjaEdit.NinjaEdit;
 
 public class CommandPos1 implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandPos1(NinjaEdit inst)
@@ -25,6 +24,7 @@ public class CommandPos1 implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.Pos1"))
 			{
 				Location pos1 = p.getLocation();
@@ -41,5 +41,4 @@ public class CommandPos1 implements CommandExecutor
 
 		return false;
 	}
-
 }

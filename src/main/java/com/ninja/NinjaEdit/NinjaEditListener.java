@@ -12,7 +12,6 @@ import org.bukkit.inventory.EquipmentSlot;
 
 public class NinjaEditListener implements Listener
 {
-
 	NinjaEdit inst;
 
 	public NinjaEditListener(NinjaEdit inst)
@@ -24,6 +23,7 @@ public class NinjaEditListener implements Listener
 	public void onInteract(PlayerInteractEvent e)
 	{
 		Player p = (Player) e.getPlayer();
+		
 		if(e.getHand() != null && e.getHand() != EquipmentSlot.OFF_HAND)
 		{
 			if(e.getPlayer().getInventory().getItemInMainHand().getType() == Material.WOOD_AXE)

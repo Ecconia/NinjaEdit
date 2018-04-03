@@ -29,7 +29,6 @@ import com.ninja.NinjaEdit.regions.Region;
 
 public class EditHistory
 {
-
 	//Stores The changes made
 	private Map<Vec3, DataBlock> before = new HashMap<Vec3, DataBlock>();
 	private Map<Vec3, DataBlock> after = new HashMap<Vec3, DataBlock>();
@@ -40,6 +39,7 @@ public class EditHistory
 
 	//List of blocks which will be done last
 	private static final HashSet<Integer> aSyncBlockslist = new HashSet<Integer>();
+	
 	static
 	{
 		aSyncBlockslist.add(50); //torch
@@ -149,10 +149,8 @@ public class EditHistory
 
 	public DataBlock aSyncGetBlock(World world, Vec3 vec)
 	{
-
 		if(aSync)
 		{
-
 			if(after.containsKey(vec))
 			{
 				return after.get(vec);
@@ -167,15 +165,18 @@ public class EditHistory
 	public void setBlock(World world, Vec3 vec, DataBlock block)
 	{
 		world.getBlockAt((int) vec.getBlockX(), (int) vec.getBlockY(), (int) vec.getBlockZ()).setTypeIdAndData(block.getTypeId(), (byte) block.getDataValue(), false);
+		
 		if(block instanceof SignBlock)
 		{
 			SignBlock signBlock = (SignBlock) block;
 			String[] text = signBlock.getText();
 			Sign sign = (Sign) world.getBlockAt((int) vec.getBlockX(), (int) vec.getBlockY(), (int) vec.getBlockZ()).getState();
+			
 			for(int i = 0; i < text.length; i++)
 			{
 				sign.setLine(i, text[i]);
 			}
+			
 			sign.update();
 		}
 		else if(block instanceof ChestBlock)
@@ -184,9 +185,11 @@ public class EditHistory
 			ItemStack blankItem = new ItemStack(0);
 			ItemStack[] items = chestBlock.getItems();
 			Chest chest = (Chest) world.getBlockAt((int) vec.getBlockX(), (int) vec.getBlockY(), (int) vec.getBlockZ()).getState();
+			
 			for(byte i = 0; i <= 26; i++)
 			{
 				ItemStack item = items[i];
+				
 				if(item != null)
 				{
 					chest.getInventory().setItem(i, new ItemStack(Material.getMaterial((int) item.getTypeId()), item.getAmount()));
@@ -196,6 +199,7 @@ public class EditHistory
 					chest.getInventory().setItem(i, blankItem);
 				}
 			}
+			
 			chest.update();
 		}
 		else if(block instanceof FurnaceBlock)
@@ -204,9 +208,11 @@ public class EditHistory
 			ItemStack blankItem = new ItemStack(0);
 			ItemStack[] items = furnaceBlock.getItems();
 			Furnace furnace = (Furnace) world.getBlockAt((int) vec.getBlockX(), (int) vec.getBlockY(), (int) vec.getBlockZ()).getState();
+			
 			for(byte i = 0; i <= 1; i++)
 			{
 				ItemStack item = items[i];
+				
 				if(item != null)
 				{
 					furnace.getInventory().setItem(i, new ItemStack(Material.getMaterial((int) item.getTypeId()), item.getAmount()));
@@ -222,12 +228,15 @@ public class EditHistory
 			DispenserBlock dispenserBlock = (DispenserBlock) block;
 			ItemStack blankItem = new ItemStack(0);
 			ItemStack[] items = dispenserBlock.getItems();
+			
 			if(block.getTypeId() == 23)
 			{
 				Dispenser dispenser = (Dispenser) world.getBlockAt((int) vec.getBlockX(), (int) vec.getBlockY(), (int) vec.getBlockZ()).getState();
+				
 				for(byte i = 0; i <= 8; i++)
 				{
 					ItemStack item = items[i];
+					
 					if(item != null)
 					{
 						dispenser.getInventory().setItem(i, new ItemStack(Material.getMaterial((int) item.getTypeId()), item.getAmount()));
@@ -241,9 +250,11 @@ public class EditHistory
 			else
 			{
 				Dropper dropper = (Dropper) world.getBlockAt((int) vec.getBlockX(), (int) vec.getBlockY(), (int) vec.getBlockZ()).getState();
+				
 				for(byte i = 0; i <= 8; i++)
 				{
 					ItemStack item = items[i];
+					
 					if(item != null)
 					{
 						dropper.getInventory().setItem(i, new ItemStack(Material.getMaterial((int) item.getTypeId()), item.getAmount()));
@@ -288,6 +299,7 @@ public class EditHistory
 			if(!block.isAir() && aSyncBlockslist.contains(block.getTypeId()) && getBlock(world, vec.tempAdd(0, -1, 0)).isAir())
 			{
 				aSyncBlocks.put(vec, block);
+				
 				if(aSyncGetBlock(world, vec) != block)
 					return;
 			}
@@ -297,12 +309,12 @@ public class EditHistory
 				return;
 			}
 		}
+		
 		setBlock(world, vec, block);
 	}
 
 	public int setBlocks(World world, Region region, DataBlock blocktype)
 	{
-
 		int affected = 0;
 
 		if(region instanceof CuboidRegion)
@@ -336,7 +348,6 @@ public class EditHistory
 			{
 				hSetBlock(world, pos, blocktype);
 				affected++;
-
 			}
 		}
 
@@ -345,7 +356,6 @@ public class EditHistory
 
 	public int setBlocks(World world, Region region, Pattern pattern)
 	{
-
 		int affected = 0;
 
 		if(region instanceof CuboidRegion)
@@ -379,7 +389,6 @@ public class EditHistory
 			{
 				hSetBlock(world, pos, pattern.next(pos));
 				affected++;
-
 			}
 		}
 
@@ -388,8 +397,8 @@ public class EditHistory
 
 	public int replaceBlocks(World world, Region region, int fromBlockType, DataBlock toBlock)
 	{
-
 		int affected = 0;
+		
 		if(region instanceof CuboidRegion)
 		{
 
@@ -411,6 +420,7 @@ public class EditHistory
 					{
 						Vec3 pos = new Vec3(x, y, z);
 						int curBlockType = getBlock(world, pos).getTypeId();
+						
 						if(fromBlockType == -1 && curBlockType != 0 || curBlockType == fromBlockType)
 						{
 							hSetBlock(world, pos, toBlock);
@@ -421,17 +431,16 @@ public class EditHistory
 			}
 
 		}
+		
 		return affected;
 	}
 
 	public String getIds(World world, Region region, int maxcount)
 	{
-
 		String ids = "";
 
 		if(region.getSize() > maxcount)
 		{
-
 			return ids;
 		}
 
@@ -455,8 +464,8 @@ public class EditHistory
 					ids += (ChatColor.LIGHT_PURPLE + "" + block.getTypeId() + ":" + block.getDataValue() + ", ");
 				}
 			}
-
 		}
+		
 		return ids;
 	}
 
@@ -477,6 +486,7 @@ public class EditHistory
 		int xs = region.getWidth();
 		int ys = region.getHeight();
 		int zs = region.getLength();
+		
 		for(int x = minX; x <= maxX; x++)
 		{
 			for(int z = minZ; z <= maxZ; z++)
@@ -530,6 +540,7 @@ public class EditHistory
 					Vec3 pos = new Vec3(x, y, z);
 					Vec3 newPos = pos.tempAdd(distance);
 					delayed.put(newPos, getBlock(world, pos));
+					
 					if(!(x >= newMin.getBlockX() && x <= newMax.getBlockX() && y >= newMin.getBlockY() && y <= newMax.getBlockY() && z >= newMin.getBlockZ() && z <= newMax.getBlockZ()))
 					{
 						hSetBlock(world, pos, setblock);
@@ -537,6 +548,7 @@ public class EditHistory
 				}
 			}
 		}
+		
 		for(Map.Entry<Vec3, DataBlock> movedBlock : delayed.entrySet())
 		{
 			hSetBlock(world, movedBlock.getKey(), movedBlock.getValue());
@@ -553,6 +565,7 @@ public class EditHistory
 			Vec3 vec = beforedata.getKey();
 			aSyncSetBlock(world, vec, beforedata.getValue());
 		}
+		
 		finshAsyncBlocks(world);
 	}
 
@@ -564,6 +577,7 @@ public class EditHistory
 			Vec3 vec = afterdata.getKey();
 			aSyncSetBlock(world, vec, afterdata.getValue());
 		}
+		
 		finshAsyncBlocks(world);
 	}
 
@@ -578,6 +592,7 @@ public class EditHistory
 		{
 			finshAsyncBlocks(world);
 		}
+		
 		aSync = false;
 	}
 

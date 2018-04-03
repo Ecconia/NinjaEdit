@@ -9,7 +9,6 @@ import com.ninja.NinjaEdit.maths.Vec3;
 
 public class RandomFillPattern implements Pattern
 {
-
 	private static final Random random = new Random();
 
 	private List<BlockChance> blocks;

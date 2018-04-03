@@ -15,10 +15,10 @@ import com.ninja.NinjaEdit.regions.Region;
 
 public class PlayerSession
 {
-
 	public static final int MAX_HISTORY_SIZE = 15;
 
 	public Location pos1, pos2;
+	
 	private Region region;
 	private List<EditHistory> history = new LinkedList<EditHistory>();
 	private int historyPointer = 0;
@@ -39,17 +39,21 @@ public class PlayerSession
 		{
 			history.remove(historyPointer);
 		}
+		
 		history.add(editHistory);
+		
 		while(history.size() > MAX_HISTORY_SIZE)
 		{
 			history.remove(0);
 		}
+		
 		historyPointer = history.size();
 	}
 
 	public boolean undo(World world)
 	{
 		historyPointer--;
+		
 		if(historyPointer >= 0)
 		{
 			history.get(historyPointer).undo(world);
@@ -77,6 +81,7 @@ public class PlayerSession
 	public void setPos1(Location loc)
 	{
 		pos1 = loc;
+		
 		if(pos1 != null && pos2 != null)
 		{
 			region = new CuboidRegion(new Vec3(pos1.getBlockX(), pos1.getBlockY(), pos1.getBlockZ()), new Vec3(pos2.getBlockX(), pos2.getBlockY(), pos2.getBlockZ()));
@@ -86,6 +91,7 @@ public class PlayerSession
 	public void setPos2(Location loc)
 	{
 		pos2 = loc;
+		
 		if(pos1 != null && pos2 != null)
 		{
 			region = new CuboidRegion(new Vec3(pos1.getBlockX(), pos1.getBlockY(), pos1.getBlockZ()), new Vec3(pos2.getBlockX(), pos2.getBlockY(), pos2.getBlockZ()));
@@ -97,6 +103,7 @@ public class PlayerSession
 		if(Bukkit.getPlayer(name) != null)
 		{
 			Location temp = Bukkit.getPlayer(name).getLocation();
+			
 			if(pos1 == null || pos2 == null)
 			{
 				//Not all position set
@@ -109,7 +116,6 @@ public class PlayerSession
 
 			//If this below is used. It is successful
 			return temp.getBlockX() * temp.getBlockY() * temp.getBlockZ();
-
 		}
 		else
 		{
@@ -149,6 +155,7 @@ public class PlayerSession
 		{
 			return new Vec3(p.getLocation().getBlockX(), p.getLocation().getBlockY(), p.getLocation().getBlockZ());
 		}
+		
 		return new Vec3(pos1.getBlockX(), pos1.getBlockY(), pos1.getBlockZ());
 	}
 }

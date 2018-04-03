@@ -18,12 +18,12 @@ import com.ninja.NinjaEdit.maths.Vec3;
 
 public class Chunk
 {
-
 	private CompoundTag rootTag;
 	private byte[] blocks;
 	private byte[] data;
 	private int rootX;
 	private int rootZ;
+	
 	Map<Vec3, Map<String, Tag>> tileEntities;
 
 	public Chunk(CompoundTag tag) throws DataException, InvalidFormatException
@@ -202,11 +202,14 @@ public class Chunk
 		{
 			throw new InvalidFormatException("Missing a \"" + key + "\" tag");
 		}
+		
 		Tag tag = items.get(key);
+		
 		if(!expected.isInstance(tag))
 		{
 			throw new InvalidFormatException(key + " tag is not of tag type " + expected.getName());
 		}
+		
 		return tag;
 	}
 }

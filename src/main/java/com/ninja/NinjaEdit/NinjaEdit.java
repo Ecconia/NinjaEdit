@@ -34,7 +34,6 @@ import com.ninja.NinjaEdit.commands.CommandWand;
 
 public class NinjaEdit extends JavaPlugin
 {
-
 	// All the players
 	private HashMap<String, PlayerSession> sessions = new HashMap<String, PlayerSession>();
 
@@ -48,13 +47,11 @@ public class NinjaEdit extends JavaPlugin
 	@Override
 	public void onDisable()
 	{
-
 	}
 
 	@SuppressWarnings("deprecation")
 	public DataBlock getBlock(String id, boolean allAllowed) throws UnknownItemException
 	{
-
 		DataBlock blocktype;
 
 		String[] args0 = id.split("\\|");
@@ -62,9 +59,11 @@ public class NinjaEdit extends JavaPlugin
 		String testID = args1[0];
 		int typeid = 0;
 		int data;
+		
 		try
 		{
 			data = args1.length > 1 ? Integer.parseInt(args1[1]) : 0;
+			
 			if(data > 15 || data < 0)
 			{
 				data = 0;
@@ -83,7 +82,6 @@ public class NinjaEdit extends JavaPlugin
 		}
 		catch(NumberFormatException e)
 		{
-
 			if(testID.equalsIgnoreCase("quartz"))
 				blocktype = new DataBlock(155, data);
 			else if(testID.equalsIgnoreCase("gold"))
@@ -113,8 +111,8 @@ public class NinjaEdit extends JavaPlugin
 				blocktype = new DataBlock(Bukkit.getUnsafe().getMaterialFromInternalName(testID).getId(), data);
 			}
 		}
+		
 		return blocktype;
-
 	}
 
 	public DataBlock getBlock(String id) throws UnknownItemException
@@ -124,7 +122,6 @@ public class NinjaEdit extends JavaPlugin
 
 	public Pattern getBlockPattern(String list) throws UnknownItemException
 	{
-
 		String[] items = list.split(",");
 
 		if(items.length == 1)
@@ -151,10 +148,12 @@ public class NinjaEdit extends JavaPlugin
 	{
 		String[] items = list.split(",");
 		Set<Integer> blocks = new HashSet<Integer>();
+		
 		for(String s : items)
 		{
 			blocks.add(getBlock(s).getTypeId());
 		}
+		
 		return blocks;
 	}
 

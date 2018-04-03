@@ -13,7 +13,6 @@ import com.ninja.NinjaEdit.regions.Region;
 
 public class CommandContract implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandContract(NinjaEdit inst)
@@ -27,15 +26,16 @@ public class CommandContract implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.stack"))
 			{
 				Vec3 dir = new Vec3();
 				// no dir set. will use where ever the player is looking
 				if(args.length == 1)
 				{
-
 					double pitch = p.getLocation().getPitch();
 					double yaw = p.getLocation().getYaw();
+					
 					if(yaw < 0)
 						yaw += 360;
 
@@ -54,11 +54,11 @@ public class CommandContract implements CommandExecutor
 						dir.add(1, 0, 0); //west
 					else if((315 <= yaw && yaw < 360.0) || 45 > yaw)
 						dir.add(0, 0, 1); //south
-
 				}
 				else if(args.length == 2)
 				{
 					String dirstr = args[1];
+					
 					if(dirstr.equalsIgnoreCase("u") || dirstr.equalsIgnoreCase("up"))
 						dir.add(0, 1, 0);
 					else if(dirstr.equalsIgnoreCase("d") || dirstr.equalsIgnoreCase("down"))
@@ -82,6 +82,7 @@ public class CommandContract implements CommandExecutor
 					p.sendMessage(ChatColor.RED + "Too many arguments!");
 					return true;
 				}
+				
 				PlayerSession session = inst.getSession(p.getName());
 				Region region = session.getRegion();
 				int oldsize = region.getSize();
@@ -94,5 +95,4 @@ public class CommandContract implements CommandExecutor
 		}
 		return false;
 	}
-
 }

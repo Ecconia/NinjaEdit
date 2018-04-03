@@ -16,7 +16,6 @@ import com.ninja.NinjaEdit.regions.Region;
 
 public class CommandCut implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandCut(NinjaEdit inst)
@@ -30,6 +29,7 @@ public class CommandCut implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.cut"))
 			{
 				PlayerSession session = inst.getSession(p.getName());

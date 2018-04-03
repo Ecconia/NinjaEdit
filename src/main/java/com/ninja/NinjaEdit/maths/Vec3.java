@@ -2,7 +2,6 @@ package com.ninja.NinjaEdit.maths;
 
 public class Vec3
 {
-
 	private int x, y, z;
 
 	public Vec3(Vec3 vec)
@@ -25,6 +24,7 @@ public class Vec3
 		this.y = 0;
 		this.z = 0;
 	}
+	
 //	public double getX() { return x; }
 //	public double getY() { return y; }
 //	public double getZ() { return z; }
@@ -137,5 +137,4 @@ public class Vec3
 	{
 		return new Vec3(this.x * x, this.y * y, this.z * z);
 	}
-
 }

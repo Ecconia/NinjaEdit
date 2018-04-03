@@ -3,7 +3,6 @@ package com.ninja.NinjaEdit.blocks;
 public class Item
 {
 	private short id;
-
 	private short damage;
 
 	public Item(short id)

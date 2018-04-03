@@ -13,8 +13,8 @@ import com.ninja.NinjaEdit.regions.Region;
 
 public class CommandGetId implements CommandExecutor
 {
-
 	NinjaEdit inst;
+	
 	int MAX_NUMBER = 9;
 
 	public CommandGetId(NinjaEdit inst)
@@ -28,18 +28,22 @@ public class CommandGetId implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.getid"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
+				
 				if(inst.getSession(p.getName()).pos1 != null && inst.getSession(p.getName()).pos1 != null)
 				{
 					Region region = session.getRegion();
 					int size = region.getSize();
+					
 					if(size > MAX_NUMBER)
 					{
 						p.sendMessage(ChatColor.LIGHT_PURPLE + "Your selection is too big(" + size + ") the limit is " + MAX_NUMBER + ".");
 						return true;
 					}
+					
 					EditHistory editHistory = new EditHistory();
 					p.sendMessage(ChatColor.LIGHT_PURPLE + editHistory.getIds(p.getWorld(), region, size));
 					return true;
@@ -58,5 +62,4 @@ public class CommandGetId implements CommandExecutor
 		}
 		return false;
 	}
-
 }

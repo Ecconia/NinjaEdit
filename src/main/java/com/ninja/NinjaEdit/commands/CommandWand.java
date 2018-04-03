@@ -10,13 +10,13 @@ import org.bukkit.inventory.ItemStack;
 
 public class CommandWand implements CommandExecutor
 {
-
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.wand"))
 			{
 				if(p.getInventory().firstEmpty() != -1)
@@ -28,6 +28,7 @@ public class CommandWand implements CommandExecutor
 				{
 					p.sendMessage(ChatColor.LIGHT_PURPLE + "Inventory full.");
 				}
+				
 				return true;
 			}
 			else
@@ -35,7 +36,7 @@ public class CommandWand implements CommandExecutor
 				p.sendMessage(ChatColor.RED + "You do not have the permission to this command.");
 			}
 		}
+		
 		return false;
 	}
-
 }

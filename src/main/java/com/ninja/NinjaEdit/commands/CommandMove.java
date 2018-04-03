@@ -13,7 +13,6 @@ import com.ninja.NinjaEdit.maths.Vec3;
 
 public class CommandMove implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandMove(NinjaEdit inst)
@@ -33,9 +32,9 @@ public class CommandMove implements CommandExecutor
 				// no dir set. will use where ever the player is looking
 				if(args.length == 1)
 				{
-
 					double pitch = p.getLocation().getPitch();
 					double yaw = p.getLocation().getYaw();
+					
 					if(yaw < 0)
 						yaw += 360;
 
@@ -58,6 +57,7 @@ public class CommandMove implements CommandExecutor
 				else if(args.length == 2)
 				{
 					String dirstr = args[1];
+					
 					if(dirstr.equalsIgnoreCase("u") || dirstr.equalsIgnoreCase("up"))
 						dir.add(0, 1, 0);
 					else if(dirstr.equalsIgnoreCase("d") || dirstr.equalsIgnoreCase("down"))
@@ -81,6 +81,7 @@ public class CommandMove implements CommandExecutor
 					p.sendMessage(ChatColor.RED + "Too many arguments!");
 					return true;
 				}
+				
 				PlayerSession session = inst.getSession(p.getName());
 				EditHistory editHistory = new EditHistory();
 				editHistory.enableAsync();

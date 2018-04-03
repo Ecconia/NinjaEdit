@@ -13,7 +13,6 @@ import com.ninja.NinjaEdit.maths.Vec3;
 
 public class CommandPaste implements CommandExecutor
 {
-
 	NinjaEdit inst;
 
 	public CommandPaste(NinjaEdit inst)
@@ -27,6 +26,7 @@ public class CommandPaste implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
+			
 			if(p.hasPermission("NinjaEdit.paste"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
@@ -47,5 +47,4 @@ public class CommandPaste implements CommandExecutor
 		}
 		return false;
 	}
-
 }

@@ -8,7 +8,6 @@ import com.ninja.NinjaEdit.maths.Vec3;
 
 public class CuboidClipboard
 {
-
 	private DataBlock[][][] data;
 	private Vec3 offset;
 	private Vec3 origin;
@@ -82,6 +81,7 @@ public class CuboidClipboard
 				{
 					if(data[x][y][z].isAir())
 						continue;
+					
 					editHistory.hSetBlock(world, new Vec3(x, y, z).tempAdd(pos), data[x][y][z]);
 				}
 			}

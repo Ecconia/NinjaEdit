@@ -20,11 +20,8 @@ import com.ninja.NinjaEdit.data.InvalidFormatException;
 
 public class FurnaceBlock extends DataBlock implements TileEntityBlock, ContainerBlock
 {
-
 	private ItemStack[] items;
-
 	private short burnTime;
-
 	private short cookTime;
 
 	public FurnaceBlock(int type)
@@ -84,9 +81,11 @@ public class FurnaceBlock extends DataBlock implements TileEntityBlock, Containe
 	public Map<String, Tag> toTileEntityNBT() throws DataException
 	{
 		List<Tag> itemsList = new ArrayList<Tag>();
+		
 		for(int i = 0; i < items.length; i++)
 		{
 			ItemStack item = items[i];
+			
 			if(item != null)
 			{
 				Map<String, Tag> data = new HashMap<String, Tag>();
@@ -98,6 +97,7 @@ public class FurnaceBlock extends DataBlock implements TileEntityBlock, Containe
 				itemsList.add(itemTag);
 			}
 		}
+		
 		Map<String, Tag> values = new HashMap<String, Tag>();
 		values.put("Items", new ListTag("Items", CompoundTag.class, itemsList));
 		values.put("BurnTime", new ShortTag("BurnTime", burnTime));
@@ -116,15 +116,16 @@ public class FurnaceBlock extends DataBlock implements TileEntityBlock, Containe
 		ItemStack[] newItems = new ItemStack[27];
 
 		Tag t = values.get("id");
+		
 		if(!(t instanceof StringTag) || !((StringTag) t).getValue().equals("Furnace"))
 		{
 			throw new DataException("'Furnace' tile entity expected");
 		}
 
 		ListTag items;
+		
 		try
 		{
-
 			items = (ListTag) Chunk.getChildTag(values, "Items", ListTag.class);
 
 			for(Tag tag : items.getValue())
@@ -153,12 +154,14 @@ public class FurnaceBlock extends DataBlock implements TileEntityBlock, Containe
 		this.items = newItems;
 
 		t = values.get("BurnTime");
+		
 		if(t instanceof ShortTag)
 		{
 			burnTime = ((ShortTag) t).getValue();
 		}
 
 		t = values.get("CookTime");
+		
 		if(t instanceof ShortTag)
 		{
 			cookTime = ((ShortTag) t).getValue();

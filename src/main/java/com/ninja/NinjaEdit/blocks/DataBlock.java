@@ -2,9 +2,7 @@ package com.ninja.NinjaEdit.blocks;
 
 public class DataBlock
 {
-
 	private short id = 0;
-
 	private char datavalue = 0;
 
 	public DataBlock(int id)

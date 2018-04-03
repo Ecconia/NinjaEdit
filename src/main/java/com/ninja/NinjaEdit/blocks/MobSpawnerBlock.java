@@ -13,9 +13,7 @@ import com.ninja.NinjaEdit.data.InvalidFormatException;
 
 public class MobSpawnerBlock extends DataBlock implements TileEntityBlock
 {
-
 	private String mobType;
-
 	private short delay;
 
 	public MobSpawnerBlock()
@@ -82,6 +80,7 @@ public class MobSpawnerBlock extends DataBlock implements TileEntityBlock
 		}
 
 		Tag t = values.get("id");
+		
 		try
 		{
 			if(!(t instanceof StringTag) || !((StringTag) t).getValue().equals("MobSpawner"))
