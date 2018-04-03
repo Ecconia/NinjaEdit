@@ -26,7 +26,7 @@ public class CommandUp implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.up"))
+			if(p.hasPermission("ninjaedit.up"))
 			{
 				Location loc = p.getLocation();
 				int value = -1;

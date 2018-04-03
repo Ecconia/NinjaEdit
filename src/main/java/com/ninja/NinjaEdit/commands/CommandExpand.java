@@ -27,7 +27,7 @@ public class CommandExpand implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.expand"))
+			if(p.hasPermission("ninjaedit.expand"))
 			{
 				Vec3 dir = new Vec3();
 				// no dir set. will use where ever the player is looking

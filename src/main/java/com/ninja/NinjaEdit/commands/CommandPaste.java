@@ -27,7 +27,7 @@ public class CommandPaste implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.paste"))
+			if(p.hasPermission("ninjaedit.paste"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
 				EditHistory editHistory = new EditHistory();

@@ -28,7 +28,7 @@ public class CommandReplace implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.replace"))
+			if(p.hasPermission("ninjaedit.replace"))
 			{
 				String name = p.getName();
 				PlayerSession session = inst.getSession(name);

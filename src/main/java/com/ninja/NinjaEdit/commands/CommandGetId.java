@@ -29,7 +29,7 @@ public class CommandGetId implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.getid"))
+			if(p.hasPermission("ninjaedit.getid"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
 				

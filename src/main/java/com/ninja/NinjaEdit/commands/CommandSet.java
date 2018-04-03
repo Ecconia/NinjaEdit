@@ -30,7 +30,7 @@ public class CommandSet implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.set"))
+			if(p.hasPermission("ninjaedit.set"))
 			{
 				if(args.length != 0)
 				{

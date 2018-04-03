@@ -25,7 +25,7 @@ public class CommandRedo implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.redo"))
+			if(p.hasPermission("ninjaedit.redo"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
 				

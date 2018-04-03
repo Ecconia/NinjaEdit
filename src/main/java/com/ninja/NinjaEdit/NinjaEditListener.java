@@ -30,7 +30,7 @@ public class NinjaEditListener implements Listener
 			{
 				if(e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)
 				{
-					if(p.hasPermission("NinjaEdit.Pos2"))
+					if(p.hasPermission("ninjaedit.pos2"))
 					{
 						Location loc = e.getPlayer().getTargetBlock(null, 100).getLocation();
 						inst.getSession(p.getName()).setPos2(loc);
@@ -41,7 +41,7 @@ public class NinjaEditListener implements Listener
 				}
 				else if(e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR)
 				{
-					if(p.hasPermission("NinjaEdit.Pos1"))
+					if(p.hasPermission("ninjaedit.pos1"))
 					{
 						Location loc = e.getPlayer().getTargetBlock(null, 100).getLocation();
 						inst.getSession(p.getName()).setPos1(loc);

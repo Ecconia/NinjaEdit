@@ -27,7 +27,7 @@ public class CommandStack implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.stack"))
+			if(p.hasPermission("ninjaedit.stack"))
 			{
 				Vec3 dir = new Vec3();
 				// no dir set. will use where ever the player is looking

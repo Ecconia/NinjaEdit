@@ -1,11 +1,11 @@
 #This is a list of all permission in this plugin
-ninjaedit.pos1   	- (//pos1) This permission is also for using the wooden axe
-ninjaedit.pos2    	- (//pos2) This permission is also for using the wooden axe 
-ninjaedit.set     	- //set
+ninjaedit.pos1   	- //pos1 - This permission is also for using the wooden axe
+ninjaedit.pos2    	- //pos2 - This permission is also for using the wooden axe 
+ninjaedit.set    	- //set
 ninjaedit.replace 	- //repalce
 ninjaedit.copy    	- //copy
 ninjaedit.paste  	- //paste
-ninjaedit.move   	- //move
+ninjaedit.move  	- //move
 ninjaedit.stack  	- //stack
 ninjaedit.wand   	- //wand
 ninjaedit.up      	- //up
@@ -14,4 +14,4 @@ ninjaedit.redo   	- //redo
 ninjaedit.cut    	- //cut
 ninjaedit.getid   	- //getid
 ninjaedit.expand   	- //expand
-ninjaedit.contract   	- //contract
+ninjaedit.contract 	- //contract

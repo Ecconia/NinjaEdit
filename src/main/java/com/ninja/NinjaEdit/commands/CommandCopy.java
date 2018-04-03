@@ -29,7 +29,7 @@ public class CommandCopy implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.copy"))
+			if(p.hasPermission("ninjaedit.copy"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
 				EditHistory editHistory = new EditHistory();

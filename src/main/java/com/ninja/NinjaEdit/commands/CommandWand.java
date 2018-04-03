@@ -17,7 +17,7 @@ public class CommandWand implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.wand"))
+			if(p.hasPermission("ninjaedit.wand"))
 			{
 				if(p.getInventory().firstEmpty() != -1)
 				{

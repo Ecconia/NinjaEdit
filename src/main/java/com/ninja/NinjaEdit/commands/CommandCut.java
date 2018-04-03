@@ -30,7 +30,7 @@ public class CommandCut implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.cut"))
+			if(p.hasPermission("ninjaedit.cut"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
 				EditHistory editHistory = new EditHistory();

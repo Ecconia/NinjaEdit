@@ -26,7 +26,7 @@ public class CommandMove implements CommandExecutor
 		if(sender instanceof Player)
 		{
 			Player p = (Player) sender;
-			if(p.hasPermission("NinjaEdit.move"))
+			if(p.hasPermission("ninjaedit.move"))
 			{
 				Vec3 dir = new Vec3();
 				// no dir set. will use where ever the player is looking

@@ -25,7 +25,7 @@ public class CommandPos2 implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.Pos2"))
+			if(p.hasPermission("ninjaedit.Pos2"))
 			{
 				Location pos2 = p.getLocation();
 				inst.getSession(p.getName()).setPos2(pos2);

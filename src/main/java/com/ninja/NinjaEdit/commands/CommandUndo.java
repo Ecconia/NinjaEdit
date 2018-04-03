@@ -25,7 +25,7 @@ public class CommandUndo implements CommandExecutor
 		{
 			Player p = (Player) sender;
 			
-			if(p.hasPermission("NinjaEdit.undo"))
+			if(p.hasPermission("ninjaedit.undo"))
 			{
 				PlayerSession session = inst.getSession(p.getName());
 				
