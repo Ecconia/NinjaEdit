@@ -1,33 +1,40 @@
 package com.ninja.NinjaEdit.blocks;
 
-public class Item {
+public class Item
+{
 	private short id;
-	
-    private short damage;
 
-    public Item(short id) {
-        this.id = id;
-        this.damage = 0;
-    }
+	private short damage;
 
-    public Item(short id, short damage) {
-        this.id = id;
-        this.damage = damage;
-    }
+	public Item(short id)
+	{
+		this.id = id;
+		this.damage = 0;
+	}
 
-    public short getID() {
-        return id;
-    }
+	public Item(short id, short damage)
+	{
+		this.id = id;
+		this.damage = damage;
+	}
 
-    public void setID(short id) {
-        this.id = id;
-    }
+	public short getID()
+	{
+		return id;
+	}
 
-    public short getDamage() {
-        return damage;
-    }
+	public void setID(short id)
+	{
+		this.id = id;
+	}
 
-    public void setDamage(short damage) {
-        this.damage = damage;
-    }
+	public short getDamage()
+	{
+		return damage;
+	}
+
+	public void setDamage(short damage)
+	{
+		this.damage = damage;
+	}
 }

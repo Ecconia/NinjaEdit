@@ -1,15 +1,18 @@
 package com.ninja.NinjaEdit.Exceptions;
 
-public class NinjaException extends Exception {
-    /**
+public class NinjaException extends Exception
+{
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected NinjaException() {
-    }
+	protected NinjaException()
+	{
+	}
 
-    protected NinjaException(String msg) {
-        super(msg);
-    }
+	protected NinjaException(String msg)
+	{
+		super(msg);
+	}
 }

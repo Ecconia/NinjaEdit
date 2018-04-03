@@ -9,53 +9,64 @@ import org.jnbt.Tag;
 
 import com.ninja.NinjaEdit.data.DataException;
 
-public class NoteBlock extends DataBlock implements TileEntityBlock {
-	
+public class NoteBlock extends DataBlock implements TileEntityBlock
+{
+
 	private byte note;
 
-    public NoteBlock(int data) {
-        super(25, data);
-        this.note = 0;
-    }
+	public NoteBlock(int data)
+	{
+		super(25, data);
+		this.note = 0;
+	}
 
-    public NoteBlock(int data, byte note) {
-        super(25, data);
-        this.note = note;
-    }
+	public NoteBlock(int data, byte note)
+	{
+		super(25, data);
+		this.note = note;
+	}
 
-    public byte getNote() {
-        return note;
-    }
+	public byte getNote()
+	{
+		return note;
+	}
 
-    public void setNote(byte note) {
-        this.note = note;
-    }
+	public void setNote(byte note)
+	{
+		this.note = note;
+	}
 
-    public String getTileEntityID() {
-        return "Music";
-    }
-    
-    public Map<String,Tag> toTileEntityNBT() throws DataException {
-        Map<String,Tag> values = new HashMap<String,Tag>();
-        values.put("note", new ByteTag("note", note));
-        return values;
-    }
+	public String getTileEntityID()
+	{
+		return "Music";
+	}
 
-    public void fromTileEntityNBT(Map<String,Tag> values) throws DataException  {
-        if (values == null) {
-            return;
-        }
-        
-        Tag t;
+	public Map<String, Tag> toTileEntityNBT() throws DataException
+	{
+		Map<String, Tag> values = new HashMap<String, Tag>();
+		values.put("note", new ByteTag("note", note));
+		return values;
+	}
 
-        t = values.get("id");
-        if (!(t instanceof StringTag) || !((StringTag)t).getValue().equals("Music")) {
-            throw new DataException("'Music' tile entity expected");
-        }
+	public void fromTileEntityNBT(Map<String, Tag> values) throws DataException
+	{
+		if(values == null)
+		{
+			return;
+		}
 
-        t = values.get("note");
-        if (t instanceof ByteTag) {
-            note = ((ByteTag)t).getValue();
-        }
-    }
+		Tag t;
+
+		t = values.get("id");
+		if(!(t instanceof StringTag) || !((StringTag) t).getValue().equals("Music"))
+		{
+			throw new DataException("'Music' tile entity expected");
+		}
+
+		t = values.get("note");
+		if(t instanceof ByteTag)
+		{
+			note = ((ByteTag) t).getValue();
+		}
+	}
 }

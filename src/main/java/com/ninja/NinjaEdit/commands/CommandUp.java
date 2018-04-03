@@ -9,32 +9,42 @@ import org.bukkit.entity.Player;
 
 import com.ninja.NinjaEdit.NinjaEdit;
 
-public class CommandUp implements CommandExecutor {
+public class CommandUp implements CommandExecutor
+{
 
 	NinjaEdit inst;
-	
-	public CommandUp(NinjaEdit inst) {
+
+	public CommandUp(NinjaEdit inst)
+	{
 		this.inst = inst;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if(sender instanceof Player) {
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+	{
+		if(sender instanceof Player)
+		{
 			Player p = (Player) sender;
-			if(p.hasPermission("NinjaEdit.up")) {
+			if(p.hasPermission("NinjaEdit.up"))
+			{
 				Location loc = p.getLocation();
 				int value = -1;
-				if(args.length != 0) {
-					try {
-					value = Integer.parseInt(args[0]);
-					} catch(NumberFormatException e) {
+				if(args.length != 0)
+				{
+					try
+					{
+						value = Integer.parseInt(args[0]);
+					}
+					catch(NumberFormatException e)
+					{
 						p.sendMessage(ChatColor.DARK_RED + "You have to put in a number!");
 						return true;
 					}
-				} 
-				
-				if(((loc.getBlockY() + value) - 1) > 256) {
+				}
+
+				if(((loc.getBlockY() + value) - 1) > 256)
+				{
 					loc.setY(255);
 				}
 				loc.add(0, value, 0);
@@ -44,14 +54,14 @@ public class CommandUp implements CommandExecutor {
 				p.teleport(loc);
 				p.sendMessage(ChatColor.LIGHT_PURPLE + "Whoosh!");
 				return true;
-			} else {
+			}
+			else
+			{
 				p.sendMessage(ChatColor.DARK_RED + "I'm sorry but you don't have the permission to use this command!");
 				return true;
 			}
 		}
-		
-		
-		
+
 		return false;
 	}
 

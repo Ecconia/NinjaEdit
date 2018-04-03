@@ -18,95 +18,113 @@ import com.ninja.NinjaEdit.data.Chunk;
 import com.ninja.NinjaEdit.data.DataException;
 import com.ninja.NinjaEdit.data.InvalidFormatException;
 
-public class DispenserBlock extends DataBlock implements TileEntityBlock, ContainerBlock {
+public class DispenserBlock extends DataBlock implements TileEntityBlock, ContainerBlock
+{
 
 	// the items
 	private ItemStack[] items;
-	
-	public DispenserBlock(int type) {
-        super(type);
-        items = new ItemStack[9];
-    }
 
-    public DispenserBlock(int type, int data) {
-        super(type, data);
-        items = new ItemStack[9];
-    }
-    
-    
-    public DispenserBlock(int type, int data, ItemStack[] items) {
-        super(type, data);
-        this.items = items;
-    }
-    
-    public ItemStack[] getItems() {
-        return items;
-    }
-    
-    public void setItems(ItemStack[] items) {
-        this.items = items;
-    }
-    
-    public String getTileEntityID() {
-        return "Dispenser";
-    }
-    
-    @SuppressWarnings("deprecation")
-	public Map<String,Tag> toTileEntityNBT() throws DataException {
-        List<Tag> itemsList = new ArrayList<Tag>();
-        for (int i = 0; i < items.length; i++) {
-            ItemStack item = items[i];
-            if (item != null) {
-                Map<String,Tag> data = new HashMap<String,Tag>();
-                CompoundTag itemTag = new CompoundTag("Items", data);
-                data.put("id", new ShortTag("id", (short)item.getTypeId()));
-                data.put("Damage", new ShortTag("Damage", item.getDurability()));
-                data.put("Count", new ByteTag("Count", (byte)item.getAmount()));
-                data.put("Slot", new ByteTag("Slot", (byte)i));
-                itemsList.add(itemTag);
-            }
-        }
-        Map<String,Tag> values = new HashMap<String,Tag>();
-        values.put("Items", new ListTag("Items", CompoundTag.class, itemsList));
-        return values;
-    }
-    
-    @SuppressWarnings("deprecation")
-	public void fromTileEntityNBT(Map<String,Tag> values) throws DataException  {
-    	if (values == null) {
-            return;
-        }
+	public DispenserBlock(int type)
+	{
+		super(type);
+		items = new ItemStack[9];
+	}
 
-        ItemStack[] newItems = new ItemStack[27];
+	public DispenserBlock(int type, int data)
+	{
+		super(type, data);
+		items = new ItemStack[9];
+	}
 
-        Tag t = values.get("id");
-        if (!(t instanceof StringTag) || !((StringTag)t).getValue().equals("Dispenser")) {
-            throw new DataException("'Dispenser' tile entity expected");
-        }
+	public DispenserBlock(int type, int data, ItemStack[] items)
+	{
+		super(type, data);
+		this.items = items;
+	}
 
-        ListTag items;
-		try {
-			
-			items = (ListTag)Chunk.getChildTag(values, "Items", ListTag.class);
-	
-	        for (Tag tag : items.getValue()) {
-	            if (!(tag instanceof CompoundTag)) {
-	                throw new DataException("CompoundTag expected as child tag of Dispenser's Items");
-	            }
-	
-	            CompoundTag item = (CompoundTag)tag;
-	            Map<String,Tag> itemValues = item.getValue();
-	
-	            short id = (Short)((ShortTag)Chunk.getChildTag(itemValues, "id", ShortTag.class)).getValue();
-	            short damage = (Short)((ShortTag)Chunk.getChildTag(itemValues, "Damage", ShortTag.class)).getValue();
-	            byte count = (Byte)((ByteTag)Chunk.getChildTag(itemValues, "Count", ByteTag.class)).getValue();
-	            byte slot = (Byte)((ByteTag)Chunk.getChildTag(itemValues, "Slot", ByteTag.class)).getValue();
-	
-	            newItems[slot] = new ItemStack(Material.getMaterial(id), count);
-	            newItems[slot].setDurability(damage);
-	        }
-		} catch (InvalidFormatException e) {}
+	public ItemStack[] getItems()
+	{
+		return items;
+	}
 
-        this.items = newItems;
-    }
+	public void setItems(ItemStack[] items)
+	{
+		this.items = items;
+	}
+
+	public String getTileEntityID()
+	{
+		return "Dispenser";
+	}
+
+	@SuppressWarnings("deprecation")
+	public Map<String, Tag> toTileEntityNBT() throws DataException
+	{
+		List<Tag> itemsList = new ArrayList<Tag>();
+		for(int i = 0; i < items.length; i++)
+		{
+			ItemStack item = items[i];
+			if(item != null)
+			{
+				Map<String, Tag> data = new HashMap<String, Tag>();
+				CompoundTag itemTag = new CompoundTag("Items", data);
+				data.put("id", new ShortTag("id", (short) item.getTypeId()));
+				data.put("Damage", new ShortTag("Damage", item.getDurability()));
+				data.put("Count", new ByteTag("Count", (byte) item.getAmount()));
+				data.put("Slot", new ByteTag("Slot", (byte) i));
+				itemsList.add(itemTag);
+			}
+		}
+		Map<String, Tag> values = new HashMap<String, Tag>();
+		values.put("Items", new ListTag("Items", CompoundTag.class, itemsList));
+		return values;
+	}
+
+	@SuppressWarnings("deprecation")
+	public void fromTileEntityNBT(Map<String, Tag> values) throws DataException
+	{
+		if(values == null)
+		{
+			return;
+		}
+
+		ItemStack[] newItems = new ItemStack[27];
+
+		Tag t = values.get("id");
+		if(!(t instanceof StringTag) || !((StringTag) t).getValue().equals("Dispenser"))
+		{
+			throw new DataException("'Dispenser' tile entity expected");
+		}
+
+		ListTag items;
+		try
+		{
+
+			items = (ListTag) Chunk.getChildTag(values, "Items", ListTag.class);
+
+			for(Tag tag : items.getValue())
+			{
+				if(!(tag instanceof CompoundTag))
+				{
+					throw new DataException("CompoundTag expected as child tag of Dispenser's Items");
+				}
+
+				CompoundTag item = (CompoundTag) tag;
+				Map<String, Tag> itemValues = item.getValue();
+
+				short id = (Short) ((ShortTag) Chunk.getChildTag(itemValues, "id", ShortTag.class)).getValue();
+				short damage = (Short) ((ShortTag) Chunk.getChildTag(itemValues, "Damage", ShortTag.class)).getValue();
+				byte count = (Byte) ((ByteTag) Chunk.getChildTag(itemValues, "Count", ByteTag.class)).getValue();
+				byte slot = (Byte) ((ByteTag) Chunk.getChildTag(itemValues, "Slot", ByteTag.class)).getValue();
+
+				newItems[slot] = new ItemStack(Material.getMaterial(id), count);
+				newItems[slot].setDurability(damage);
+			}
+		}
+		catch(InvalidFormatException e)
+		{
+		}
+
+		this.items = newItems;
+	}
 }

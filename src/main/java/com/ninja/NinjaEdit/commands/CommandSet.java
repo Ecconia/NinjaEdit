@@ -14,57 +14,72 @@ import com.ninja.NinjaEdit.blocks.pattern.SingleBlockPattern;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class CommandSet implements CommandExecutor {
+public class CommandSet implements CommandExecutor
+{
 
 	NinjaEdit inst;
-	
-	
-	public CommandSet(NinjaEdit inst) {
+
+	public CommandSet(NinjaEdit inst)
+	{
 		this.inst = inst;
 	}
-	
-	
+
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if(sender instanceof Player) {
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+	{
+		if(sender instanceof Player)
+		{
 			Player p = (Player) sender;
-			if(p.hasPermission("NinjaEdit.set")) {
-				if(args.length != 0) {
+			if(p.hasPermission("NinjaEdit.set"))
+			{
+				if(args.length != 0)
+				{
 					String name = p.getName();
 					PlayerSession session = inst.getSession(name);
 					EditHistory editHistory = new EditHistory();
 					Pattern pattern;
 					editHistory.enableAsync();
-					try {
+					try
+					{
 						pattern = inst.getBlockPattern(args[0]);
-					} catch(UnknownItemException e) {
+					}
+					catch(UnknownItemException e)
+					{
 						p.sendMessage(ChatColor.DARK_RED + "You have to put in an id!");
 						return true;
-						
+
 					}
-					if(inst.getSession(name).pos1 != null && inst.getSession(name).pos1 != null) {
-						
+					if(inst.getSession(name).pos1 != null && inst.getSession(name).pos1 != null)
+					{
+
 						int count;
-						if(pattern instanceof SingleBlockPattern) {
-						count = editHistory.setBlocks(p.getWorld(), session.getRegion(), (SingleBlockPattern) pattern);
-						} else {
+						if(pattern instanceof SingleBlockPattern)
+						{
+							count = editHistory.setBlocks(p.getWorld(), session.getRegion(), (SingleBlockPattern) pattern);
+						}
+						else
+						{
 							count = editHistory.setBlocks(p.getWorld(), session.getRegion(), pattern);
 						}
 						session.remember(editHistory);
-						p.sendMessage(ChatColor.LIGHT_PURPLE + "Operation completed ("  + count + " blocks affected).");
+						p.sendMessage(ChatColor.LIGHT_PURPLE + "Operation completed (" + count + " blocks affected).");
 						editHistory.finshAsyncBlocks(p.getWorld());
 						return true;
-					} else {
+					}
+					else
+					{
 						p.sendMessage(ChatColor.RED + "You need to make a selection first.");
 						return true;
 					}
-				} else {
+				}
+				else
+				{
 					p.sendMessage(ChatColor.RED + "Too few arguments");
 					return true;
 				}
 			}
 		}
 		return false;
-		
+
 	}
 }
